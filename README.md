@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-编译C语言SPX接口为.so共享库(已编译)
+编译C语言SPX接口为.so共享库(已编译，需要配置好ndk)
 ```bash
 cd clib
 ndk-build
