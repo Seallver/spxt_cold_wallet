@@ -1,10 +1,14 @@
 # spx_cold_wallet
 
 ## Getting Started
-
-This project is a starting point for a Flutter application.
-
+编译C语言SPX接口(已编译)
+```bash
+cd clib
+ndk-build
+```
+编译flutter项目成apk
 ```bash
 flutter build apk
-build/app/outputs/flutter-apk/
 ```
+结果所在目录
+build/app/outputs/flutter-apk/
