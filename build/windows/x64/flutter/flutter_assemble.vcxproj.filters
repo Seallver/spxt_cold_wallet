@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\AndroidProject\spx_cold_wallet\build\windows\x64\CMakeFiles\6a02147ded26f56a559df4ccc4d70680\flutter_windows.dll.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\AndroidProject\spx_cold_wallet\build\windows\x64\CMakeFiles\6f54b1cf053417343461bf346908ad26\flutter_assemble.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\AndroidProject\spx_cold_wallet\windows\flutter\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\AndroidProject\spx_cold_wallet\build\windows\x64\flutter\CMakeFiles\flutter_assemble" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{7A737084-1DE3-35E6-83AF-1DCDB3E93B5A}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

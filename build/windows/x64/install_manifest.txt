@@ -1,0 +1,13 @@
+D:/AndroidProject/spx_cold_wallet/build/windows/x64/runner/Debug/data/icudtl.dat
+D:/AndroidProject/spx_cold_wallet/build/windows/x64/runner/Debug/flutter_windows.dll
+D:/AndroidProject/spx_cold_wallet/build/windows/x64/runner/Debug/data/flutter_assets/AssetManifest.bin
+D:/AndroidProject/spx_cold_wallet/build/windows/x64/runner/Debug/data/flutter_assets/AssetManifest.bin.json
+D:/AndroidProject/spx_cold_wallet/build/windows/x64/runner/Debug/data/flutter_assets/AssetManifest.json
+D:/AndroidProject/spx_cold_wallet/build/windows/x64/runner/Debug/data/flutter_assets/FontManifest.json
+D:/AndroidProject/spx_cold_wallet/build/windows/x64/runner/Debug/data/flutter_assets/fonts/MaterialIcons-Regular.otf
+D:/AndroidProject/spx_cold_wallet/build/windows/x64/runner/Debug/data/flutter_assets/kernel_blob.bin
+D:/AndroidProject/spx_cold_wallet/build/windows/x64/runner/Debug/data/flutter_assets/NativeAssetsManifest.json
+D:/AndroidProject/spx_cold_wallet/build/windows/x64/runner/Debug/data/flutter_assets/NOTICES
+D:/AndroidProject/spx_cold_wallet/build/windows/x64/runner/Debug/data/flutter_assets/NOTICES.Z
+D:/AndroidProject/spx_cold_wallet/build/windows/x64/runner/Debug/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
+D:/AndroidProject/spx_cold_wallet/build/windows/x64/runner/Debug/data/flutter_assets/shaders/ink_sparkle.frag

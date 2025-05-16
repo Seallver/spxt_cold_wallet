@@ -1,0 +1,19 @@
+<lint-module
+    format="1"
+    dir="D:\AndroidProject\spx_cold_wallet\dependencies\qr_code_scanner\android"
+    name=":qr_code_scanner"
+    type="LIBRARY"
+    maven="net.touchcapture.qr.flutterqr:qr_code_scanner:1.0-SNAPSHOT"
+    agpVersion="8.7.0"
+    buildFolder="D:\AndroidProject\spx_cold_wallet\build\qr_code_scanner"
+    bootClassPath="D:\Android\Sdk\platforms\android-33\android.jar;D:\Android\Sdk\build-tools\34.0.0\core-lambda-stubs.jar"
+    javaSourceLevel="11"
+    compileTarget="android-33"
+    neverShrinking="true">
+  <lintOptions
+      abortOnError="true"
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true"/>
+  <variant name="release"/>
+</lint-module>

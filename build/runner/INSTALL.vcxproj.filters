@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\AndroidProject\spx_cold_wallet\build\CMakeFiles\c96a3dc3c7f2c1c02a65d20d0135ea96\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{D30C26DE-025A-33C1-BA02-05BB221AF986}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

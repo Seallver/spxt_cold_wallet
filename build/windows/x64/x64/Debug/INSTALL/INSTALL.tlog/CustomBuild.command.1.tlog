@@ -1,0 +1,10 @@
+^D:\ANDROIDPROJECT\SPX_COLD_WALLET\BUILD\WINDOWS\X64\CMAKEFILES\B01B13488171435D69E5EEF888A7CF15\INSTALL_FORCE.RULE
+setlocal
+cd .
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

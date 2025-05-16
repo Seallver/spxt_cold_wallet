@@ -1,0 +1,32 @@
+<variant
+    name="release"
+    package="net.touchcapture.qr.flutterqr"
+    minSdkVersion="20"
+    targetSdkVersion="33"
+    mergedManifest="D:\AndroidProject\spx_cold_wallet\build\qr_code_scanner\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml"
+    proguardFiles="D:\AndroidProject\spx_cold_wallet\build\qr_code_scanner\intermediates\default_proguard_files\global\proguard-android.txt-8.7.0"
+    partialResultsDir="D:\AndroidProject\spx_cold_wallet\build\qr_code_scanner\intermediates\lint_vital_partial_results\release\lintVitalAnalyzeRelease\out"
+    desugaredMethodsFiles="C:\Users\Seallver\.gradle\caches\8.10.2\transforms\5550bb62766feccc6f77d76cd089fe4f\transformed\desugar_jdk_libs_configuration-2.0.3-desugar-lint.txt;C:\Users\Seallver\.gradle\caches\8.10.2\transforms\d6915ec5288d76afa51dc1c272493c4d\transformed\D8BackportedDesugaredMethods.txt">
+  <buildFeatures
+      coreLibraryDesugaring="true"
+      namespacing="REQUIRED"/>
+  <sourceProviders>
+    <sourceProvider
+        manifests="src\main\AndroidManifest.xml"
+        javaDirectories="src\main\java;src\main\kotlin;src\release\java;src\release\kotlin"
+        resDirectories="src\main\res;src\release\res"
+        assetsDirectories="src\main\assets;src\release\assets"/>
+  </sourceProviders>
+  <testSourceProviders>
+  </testSourceProviders>
+  <testFixturesSourceProviders>
+  </testFixturesSourceProviders>
+  <artifact
+      classOutputs="D:\AndroidProject\spx_cold_wallet\build\qr_code_scanner\intermediates\javac\release\compileReleaseJavaWithJavac\classes;D:\AndroidProject\spx_cold_wallet\build\qr_code_scanner\tmp\kotlin-classes\release;D:\AndroidProject\spx_cold_wallet\build\qr_code_scanner\intermediates\compile_r_class_jar\release\generateReleaseRFile\R.jar"
+      type="MAIN"
+      applicationId="net.touchcapture.qr.flutterqr"
+      generatedSourceFolders="D:\AndroidProject\spx_cold_wallet\build\qr_code_scanner\generated\ap_generated_sources\release\out"
+      generatedResourceFolders="D:\AndroidProject\spx_cold_wallet\build\qr_code_scanner\generated\res\resValues\release"
+      desugaredMethodsFiles="C:\Users\Seallver\.gradle\caches\8.10.2\transforms\5550bb62766feccc6f77d76cd089fe4f\transformed\desugar_jdk_libs_configuration-2.0.3-desugar-lint.txt;C:\Users\Seallver\.gradle\caches\8.10.2\transforms\d6915ec5288d76afa51dc1c272493c4d\transformed\D8BackportedDesugaredMethods.txt">
+  </artifact>
+</variant>

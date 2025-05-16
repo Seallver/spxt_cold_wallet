@@ -1,0 +1,10 @@
+^D:\ANDROIDPROJECT\SPX_COLD_WALLET\BUILD\WINDOWS\X64\CMAKEFILES\B01B13488171435D69E5EEF888A7CF15\GENERATE.STAMP.RULE
+setlocal
+"D:\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/AndroidProject/spx_cold_wallet/windows -BD:/AndroidProject/spx_cold_wallet/build/windows/x64 --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/AndroidProject/spx_cold_wallet/build/windows/x64/spx_cold_wallet.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
