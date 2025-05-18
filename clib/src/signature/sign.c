@@ -9,7 +9,6 @@
 #include "hash.h"
 #include "thash.h"
 #include "address.h"
-#include "randombytes.h"
 #include "utils.h"
 #include "merkle.h"
 
@@ -102,7 +101,8 @@ int crypto_sign_first_level_signature(uint8_t * sig, int * sm_len,
         tree = tree >> SPX_TREE_HEIGHT;
     }
 
-
+    //更新root
+    memcpy(last_root, root, SPX_N);
 
     return 0;
 }

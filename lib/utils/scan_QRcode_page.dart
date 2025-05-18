@@ -27,17 +27,12 @@ class _ScanPageState extends State<ScanPage> {
         children: [
           Expanded(
             flex: 4,
-            child: QRView(
-              key: qrKey,
-              onQRViewCreated: _onQRViewCreated,
-            ),
+            child: QRView(key: qrKey, onQRViewCreated: _onQRViewCreated),
           ),
           Expanded(
             flex: 1,
-            child: Center(
-              child: Text(result ?? 'Please scan the QR code'),
-            ),
-          )
+            child: Center(child: Text(result ?? 'Please scan the QR code')),
+          ),
         ],
       ),
     );

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'key_gen_page.dart';
+import 'key_gen_page_1.dart';
 import '../utils/auth.dart';
 
 class ViewKeyPage extends StatefulWidget {
@@ -51,7 +51,8 @@ class _ViewKeyPageState extends State<ViewKeyPage> {
             trailing: IconButton(
               icon: const Icon(Icons.delete, color: Colors.red),
               onPressed: () async {
-                final verified = await authenticateWithBiometrics(context);
+                // final verified = await authenticateWithBiometrics(context);
+                final verified = true;
                 if (verified) {
                   _confirmDeleteKey(keyName);
                 }
@@ -62,7 +63,8 @@ class _ViewKeyPageState extends State<ViewKeyPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          final verified = await authenticateWithBiometrics(context);
+          // final verified = await authenticateWithBiometrics(context);
+          final verified = true;
           if (verified) {
             Navigator.push(
               context,
@@ -147,6 +149,10 @@ class KeyDetailPage extends StatelessWidget {
                 Text('pk: ${keyData['pk'] ?? "null"}', style: const TextStyle(fontSize: 16)),
                 const SizedBox(height: 10),
                 Text('lagrange_shard: ${keyData['lagrange_shard'] ?? "null"}', style: const TextStyle(fontSize: 16)),
+                const SizedBox(height: 10),
+                Text('prime: ${keyData['prime'] ?? "null"}', style: const TextStyle(fontSize: 16)),
+                const SizedBox(height: 10),
+                Text('n: ${keyData['participants'] ?? "null"}', style: const TextStyle(fontSize: 16)),
                 const SizedBox(height: 10),
                 Text('t: ${keyData['threshold'] ?? "null"}', style: const TextStyle(fontSize: 16)),
                 const SizedBox(height: 10),

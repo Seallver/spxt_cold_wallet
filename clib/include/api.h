@@ -46,4 +46,9 @@ int crypto_sign_first_level_signature(uint8_t *sig,  int * sm_len,
                           const uint8_t *wots_sk, const uint8_t* pk, unsigned char* last_root,
                           int level_count);
 
+
+int sign_FORS(uint8_t *sig, int * sm_len,
+                const uint8_t *m, int mlen, const uint8_t *fors_sk, 
+                const uint8_t* pk);
+
 #endif
