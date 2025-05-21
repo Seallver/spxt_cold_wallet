@@ -127,6 +127,14 @@ int gen_shards(SSS_ctx* ctx, char* blind_sk) {
 }
 
 
+
+
+
+
+
+
+
+
 void SSS_free(SSS_ctx* ctx) {
     if (!ctx) return;
 

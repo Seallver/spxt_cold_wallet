@@ -19,8 +19,6 @@ class _KeyGenPageState extends State<KeyGenPage> {
   final TextEditingController _primeController = TextEditingController();
   final TextEditingController _noteController = TextEditingController();
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,16 +80,22 @@ class _KeyGenPageState extends State<KeyGenPage> {
                           });
 
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Prime set from QR code')),
+                            const SnackBar(
+                              content: Text('Prime set from QR code'),
+                            ),
                           );
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('QR code missing "prime" field')),
+                            const SnackBar(
+                              content: Text('QR code missing "prime" field'),
+                            ),
                           );
                         }
                       } catch (e) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Invalid QR code format')),
+                          const SnackBar(
+                            content: Text('Invalid QR code format'),
+                          ),
                         );
                       }
                     }
@@ -104,56 +108,65 @@ class _KeyGenPageState extends State<KeyGenPage> {
               child: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: ElevatedButton(
-                    onPressed: () {
-                      final account = _accountController.text.trim();
-                      final party = _partyController.text.trim();
-                      final t = _thresholdController.text.trim();
-                      final n = _participantsController.text.trim();
-                      final prime = _primeController.text.trim();
-                      final note = _noteController.text.trim();
+                  onPressed: () {
+                    final account = _accountController.text.trim();
+                    final party = _partyController.text.trim();
+                    final t = _thresholdController.text.trim();
+                    final n = _participantsController.text.trim();
+                    final prime = _primeController.text.trim();
+                    final note = _noteController.text.trim();
 
-                      // 检查必填字段
-                      if (account.isEmpty || party.isEmpty || t.isEmpty || n.isEmpty || prime.isEmpty) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Please input params')),
-                        );
-                        return;
-                      }
+                    // 检查必填字段
+                    if (account.isEmpty ||
+                        party.isEmpty ||
+                        t.isEmpty ||
+                        n.isEmpty ||
+                        prime.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Please input params')),
+                      );
+                      return;
+                    }
 
-                      // 检查 t 和 n 是有效数字
-                      final tInt = int.tryParse(t);
-                      final nInt = int.tryParse(n);
-                      if (tInt == null || nInt == null || tInt <= 0 || nInt <= 0 || tInt >= nInt) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Please input valid t and n')),
-                        );
-                        return;
-                      }
-
-                      // 跳转到新页面
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => KeyResultPage(
-                            account: account,
-                            party: party,
-                            threshold: t,
-                            participants: n,
-                            prime: prime,
-                            note: note,
-                          ),
+                    // 检查 t 和 n 是有效数字
+                    final tInt = int.tryParse(t);
+                    final nInt = int.tryParse(n);
+                    if (tInt == null ||
+                        nInt == null ||
+                        tInt <= 0 ||
+                        nInt <= 0 ||
+                        tInt >= nInt) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Please input valid t and n'),
                         ),
                       );
-                    },
-                    child: const Text('Continue'),
-                  ),
+                      return;
+                    }
 
-              )
+                    // 跳转到新页面
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (context) => KeyResultPage(
+                              account: account,
+                              party: party,
+                              threshold: t,
+                              participants: n,
+                              prime: prime,
+                              note: note,
+                            ),
+                      ),
+                    );
+                  },
+                  child: const Text('Continue'),
+                ),
+              ),
             ),
           ],
         ),
       ),
     );
   }
-
 }

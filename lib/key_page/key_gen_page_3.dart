@@ -32,7 +32,7 @@ class FinalResultPage extends StatefulWidget {
 }
 
 class _FinalResultPageState extends State<FinalResultPage> {
-  String? _blindSkHex;
+  String? _blindSkDec;
   String? _pk;
   String? _sk;
   String? _lgrg;
@@ -42,32 +42,32 @@ class _FinalResultPageState extends State<FinalResultPage> {
     final blindSkPtr = calloc<Uint8>(1024); // 分配足够大的字符串缓冲区
     res = genShards(widget.ctxPtr, blindSkPtr.cast<Utf8>());
 
-    final skHex = blindSkPtr.cast<Utf8>().toDartString();
+    final skDec = blindSkPtr.cast<Utf8>().toDartString();
     calloc.free(blindSkPtr);
 
     setState(() {
-      _blindSkHex = skHex;
+      _blindSkDec = skDec;
     });
 
     showDialog(
       context: context,
-      builder: (_) => AlertDialog(
-        title: const Text('Result'),
-        content: Text('Return: $res\nblind_sk:\n$skHex'),
-      ),
+      builder:
+          (_) => AlertDialog(
+            title: const Text('Result'),
+            content: Text('Return: $res\nblind_sk:\n$skDec'),
+          ),
     );
   }
 
-
   void _onShowQRCodePressed(BuildContext context) {
-    if (_blindSkHex == null) {
+    if (_blindSkDec == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please gen blind-sk first')),
       );
       return;
     }
 
-    final data = {'blind_sk': _blindSkHex!};
+    final data = {'blind_sk': _blindSkDec!};
 
     final jsonStr = jsonEncode(data);
 
@@ -122,20 +122,20 @@ class _FinalResultPageState extends State<FinalResultPage> {
   }
 
   void _onSaveKeyPressed(BuildContext context) async {
-    final skBuf = calloc<Uint8>(1024);     // 分配足够大的空间存字符串
+    final skBuf = calloc<Uint8>(1024); // 分配足够大的空间存字符串
     final lgrgBuf = calloc<Uint8>(1024);
 
     sssGetParams(widget.ctxPtr, skBuf.cast<Utf8>(), lgrgBuf.cast<Utf8>());
 
-    final skHex = skBuf.cast<Utf8>().toDartString();
-    final lgrgHex = lgrgBuf.cast<Utf8>().toDartString();
+    final skDec = skBuf.cast<Utf8>().toDartString();
+    final lgrgDec = lgrgBuf.cast<Utf8>().toDartString();
 
     calloc.free(skBuf);
     calloc.free(lgrgBuf);
 
     setState(() {
-      _sk = skHex;
-      _lgrg = lgrgHex;
+      _sk = skDec;
+      _lgrg = lgrgDec;
     });
 
     // if (_pk == null || _sk == null || _lgrg == null) {
@@ -167,11 +167,10 @@ class _FinalResultPageState extends State<FinalResultPage> {
     keys.add(keyName);
     await prefs.setStringList('private_key_index', keys);
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('spx key saved')),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(const SnackBar(content: Text('spx key saved')));
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -181,8 +180,6 @@ class _FinalResultPageState extends State<FinalResultPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('received ctxPtr: ${widget.ctxPtr}'),
-            const SizedBox(height: 20),
             Center(
               child: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.8,

@@ -31,9 +31,7 @@ class _ViewKeyPageState extends State<ViewKeyPage> {
   void _navigateToDetail(String keyName) {
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (context) => KeyDetailPage(keyName: keyName),
-      ),
+      MaterialPageRoute(builder: (context) => KeyDetailPage(keyName: keyName)),
     );
   }
 
@@ -51,8 +49,8 @@ class _ViewKeyPageState extends State<ViewKeyPage> {
             trailing: IconButton(
               icon: const Icon(Icons.delete, color: Colors.red),
               onPressed: () async {
-                // final verified = await authenticateWithBiometrics(context);
-                final verified = true;
+                final verified = await authenticateWithBiometrics(context);
+                // final verified = true;
                 if (verified) {
                   _confirmDeleteKey(keyName);
                 }
@@ -63,8 +61,8 @@ class _ViewKeyPageState extends State<ViewKeyPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          // final verified = await authenticateWithBiometrics(context);
-          final verified = true;
+          final verified = await authenticateWithBiometrics(context);
+          // final verified = true;
           if (verified) {
             Navigator.push(
               context,
@@ -76,23 +74,30 @@ class _ViewKeyPageState extends State<ViewKeyPage> {
       ),
     );
   }
+
   Future<void> _confirmDeleteKey(String keyName) async {
     final confirm = await showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Confirm Delete'),
-        content: const Text('Are you sure you want to delete this key? This operation cannot be restored.'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+      builder:
+          (context) => AlertDialog(
+            title: const Text('Confirm Delete'),
+            content: const Text(
+              'Are you sure you want to delete this key? This operation cannot be restored.',
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context, false),
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context, true),
+                child: const Text(
+                  'Delete',
+                  style: TextStyle(color: Colors.red),
+                ),
+              ),
+            ],
           ),
-          TextButton(
-            onPressed: () => Navigator.pop(context, true),
-            child: const Text('Delete', style: TextStyle(color: Colors.red)),
-          ),
-        ],
-      ),
     );
 
     if (confirm == true) {
@@ -140,23 +145,50 @@ class KeyDetailPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('account: ${keyData['account'] ?? "null"}', style: const TextStyle(fontSize: 16)),
+                Text(
+                  'account: ${keyData['account'] ?? "null"}',
+                  style: const TextStyle(fontSize: 16),
+                ),
                 const SizedBox(height: 10),
-                Text('party: ${keyData['party'] ?? "null"}', style: const TextStyle(fontSize: 16)),
+                Text(
+                  'party: ${keyData['party'] ?? "null"}',
+                  style: const TextStyle(fontSize: 16),
+                ),
                 const SizedBox(height: 10),
-                Text('sk: ${keyData['sk'] ?? "null"}', style: const TextStyle(fontSize: 16)),
+                Text(
+                  'sk: ${keyData['sk'] ?? "null"}',
+                  style: const TextStyle(fontSize: 16),
+                ),
                 const SizedBox(height: 10),
-                Text('pk: ${keyData['pk'] ?? "null"}', style: const TextStyle(fontSize: 16)),
+                Text(
+                  'pk: ${keyData['pk'] ?? "null"}',
+                  style: const TextStyle(fontSize: 16),
+                ),
                 const SizedBox(height: 10),
-                Text('lagrange_shard: ${keyData['lagrange_shard'] ?? "null"}', style: const TextStyle(fontSize: 16)),
+                Text(
+                  'lagrange_shard: ${keyData['lagrange_shard'] ?? "null"}',
+                  style: const TextStyle(fontSize: 16),
+                ),
                 const SizedBox(height: 10),
-                Text('prime: ${keyData['prime'] ?? "null"}', style: const TextStyle(fontSize: 16)),
+                Text(
+                  'prime: ${keyData['prime'] ?? "null"}',
+                  style: const TextStyle(fontSize: 16),
+                ),
                 const SizedBox(height: 10),
-                Text('n: ${keyData['participants'] ?? "null"}', style: const TextStyle(fontSize: 16)),
+                Text(
+                  'n: ${keyData['participants'] ?? "null"}',
+                  style: const TextStyle(fontSize: 16),
+                ),
                 const SizedBox(height: 10),
-                Text('t: ${keyData['threshold'] ?? "null"}', style: const TextStyle(fontSize: 16)),
+                Text(
+                  't: ${keyData['threshold'] ?? "null"}',
+                  style: const TextStyle(fontSize: 16),
+                ),
                 const SizedBox(height: 10),
-                Text('note: ${keyData['note'] ?? "null"}', style: const TextStyle(fontSize: 16)),
+                Text(
+                  'note: ${keyData['note'] ?? "null"}',
+                  style: const TextStyle(fontSize: 16),
+                ),
               ],
             ),
           );

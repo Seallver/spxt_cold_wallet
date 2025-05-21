@@ -5,9 +5,7 @@ import '../utils/scan_QRcode_page.dart';
 import 'package:ffi/ffi.dart';
 import 'dart:ffi';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'dart:typed_data';
 import 'key_gen_page_3.dart';
-
 
 class KeyResultPage extends StatefulWidget {
   final String account;
@@ -55,13 +53,12 @@ class _KeyResultPageState extends State<KeyResultPage> {
 
   Future<void> _initCtx() async {
     final primePtr = widget.prime.toNativeUtf8();
-    _ctxPtr =
-        sssNew(
-          primePtr,
-          int.parse(widget.participants),
-          int.parse(widget.threshold),
-          int.parse(widget.party),
-        );
+    _ctxPtr = sssNew(
+      primePtr,
+      int.parse(widget.participants),
+      int.parse(widget.threshold),
+      int.parse(widget.party),
+    );
     malloc.free(primePtr);
 
     setState(() {
@@ -97,15 +94,6 @@ class _KeyResultPageState extends State<KeyResultPage> {
     });
   }
 
-
-  // @override
-  // void dispose() {
-  //   if (_ctxPtr != nullptr) {
-  //     sssFree(_ctxPtr.cast<SSS_ctx>());
-  //   }
-  //   super.dispose();
-  // }
-
   @override
   Widget build(BuildContext context) {
     final n = int.parse(widget.participants);
@@ -123,33 +111,33 @@ class _KeyResultPageState extends State<KeyResultPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                    Text(
-                      'Select Destination:',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    // 下拉选择 j
-                    DropdownButton<int>(
-                      value: _selectedJ,
-                      items:
-                          List.generate(n, (index) => index + 1)
-                              .where((j) => j != int.parse(widget.party))
-                              .map(
-                                (j) => DropdownMenuItem(
-                                  value: j,
-                                  child: Text('$j'),
-                                ),
-                              )
-                              .toList(),
-                      onChanged: (val) {
-                        setState(() {
-                          _selectedJ = val;
-                        });
-                      },
-                    ),
+                        Text(
+                          'Select Destination:',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        // 下拉选择 j
+                        DropdownButton<int>(
+                          value: _selectedJ,
+                          items:
+                              List.generate(n, (index) => index + 1)
+                                  .where((j) => j != int.parse(widget.party))
+                                  .map(
+                                    (j) => DropdownMenuItem(
+                                      value: j,
+                                      child: Text('$j'),
+                                    ),
+                                  )
+                                  .toList(),
+                          onChanged: (val) {
+                            setState(() {
+                              _selectedJ = val;
+                            });
+                          },
+                        ),
                       ],
                     ),
 
@@ -182,10 +170,12 @@ class _KeyResultPageState extends State<KeyResultPage> {
                       child: Center(
                         child:
                             _currentQrData != null
-                                ? QrImageView(
-                                  data: _currentQrData!,
-                                  version: QrVersions.auto,
-                                  size: 250,
+                                ? Center(
+                                  child: QrImageView(
+                                    data: _currentQrData!,
+                                    version: QrVersions.auto,
+                                    size: 250,
+                                  ),
                                 )
                                 : const Text(
                                   'Click the button to generate a QR code',
@@ -201,14 +191,23 @@ class _KeyResultPageState extends State<KeyResultPage> {
                           onPressed: _scanQRCode,
                           child: const Text(
                             'Scan QR Code',
-                            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                    
+
                     const SizedBox(height: 20),
-                    Text('Received Shares:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                    Text(
+                      'Received Shares:',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     Expanded(
                       child: ListView.builder(
                         itemCount: _shares.length,
@@ -216,7 +215,10 @@ class _KeyResultPageState extends State<KeyResultPage> {
                           final share = _shares[index];
                           return ListTile(
                             leading: Text('Party ${share['src']}'),
-                            title: Text('r: ${share['r']}\ns: ${share['s']}', style: const TextStyle(fontSize: 13)),
+                            title: Text(
+                              'r: ${share['r']}\ns: ${share['s']}',
+                              style: const TextStyle(fontSize: 13),
+                            ),
                           );
                         },
                       ),
@@ -228,77 +230,65 @@ class _KeyResultPageState extends State<KeyResultPage> {
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: ElevatedButton(
-                          onPressed: _ctxPtr == nullptr
-                          ? null
-                          : () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (_) => FinalResultPage(
-                                    account: widget.account,
-                                    ctxPtr: _ctxPtr,
-                                    party: int.parse(widget.party),
-                                    threshold: int.parse(widget.threshold),
-                                    participants: int.parse(widget.participants),
-                                    prime: widget.prime,
-                                    note: widget.note,
-                                  ),
-                                ),
-                              );
-                            },
-                            child: const Text(
-                              'Continue',
-                              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                          onPressed:
+                              _ctxPtr == nullptr
+                                  ? null
+                                  : () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder:
+                                            (_) => FinalResultPage(
+                                              account: widget.account,
+                                              ctxPtr: _ctxPtr,
+                                              party: int.parse(widget.party),
+                                              threshold: int.parse(
+                                                widget.threshold,
+                                              ),
+                                              participants: int.parse(
+                                                widget.participants,
+                                              ),
+                                              prime: widget.prime,
+                                              note: widget.note,
+                                            ),
+                                      ),
+                                    );
+                                  },
+                          child: const Text(
+                            'Continue',
+                            style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
                             ),
-                        ),  
+                          ),
+                        ),
                       ),
                     ),
-
-
                   ],
                 ),
-
-                
       ),
-
-      
     );
   }
-  
+
   Future<void> _scanQRCode() async {
-    final result = await Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => const ScanPage()),
-    );
+    final result = await Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (_) => const ScanPage()));
 
     if (result != null && result is String) {
       try {
         final Map<String, dynamic> jsonData = jsonDecode(result);
         final int src = jsonData['src'];
-        final String rHex = jsonData['r'];
-        final String sHex = jsonData['s'];
+        final String rDec = jsonData['r']; // 直接十进制字符串
+        final String sDec = jsonData['s']; // 直接十进制字符串
 
-        // 把 hex 转 byte
-        final rBytes = Uint8List.fromList(
-          List.generate(rHex.length ~/ 2, (i) => int.parse(rHex.substring(2 * i, 2 * i + 2), radix: 16))
-        );
-        final sBytes = Uint8List.fromList(
-          List.generate(sHex.length ~/ 2, (i) => int.parse(sHex.substring(2 * i, 2 * i + 2), radix: 16))
-        );
+        // 直接把十进制字符串转成 native Utf8 指针传给 C
+        final rPtr = rDec.toNativeUtf8();
+        final sPtr = sDec.toNativeUtf8();
 
-        // 分配 FFI 内存
-        final rPtr = calloc<Uint8>(rBytes.length);
-        final sPtr = calloc<Uint8>(sBytes.length);
-        for (int i = 0; i < rBytes.length; i++) {
-          rPtr[i] = rBytes[i];
-        }
-        for (int i = 0; i < sBytes.length; i++) {
-          sPtr[i] = sBytes[i];
-        }
+        final ret = aggregateShare(_ctxPtr, src, rPtr, sPtr);
 
-        // 调用 C 函数聚合 share
-        final ret = aggregateShare(_ctxPtr, src, rPtr.cast<Utf8>(), sPtr.cast<Utf8>());
-
-        calloc.free(rPtr);
-        calloc.free(sPtr);
+        malloc.free(rPtr);
+        malloc.free(sPtr);
 
         if (ret != 0) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -307,18 +297,14 @@ class _KeyResultPageState extends State<KeyResultPage> {
           return;
         }
 
-        // 更新 UI
         setState(() {
-          _shares.add({'src': '$src', 'r': rHex, 's': sHex});
+          _shares.add({'src': '$src', 'r': rDec, 's': sDec});
         });
       } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Invalid QR data')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('Invalid QR data')));
       }
     }
   }
-
-
-  
 }

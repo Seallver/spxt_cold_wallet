@@ -5,12 +5,12 @@ import 'sign_page/sign_page.dart';
 import 'utils/check_connection_page.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: const CheckConnectionPage(),
-    routes: {
-      '/main': (context) => const MainMenuPage(),
-    },
-  ));
+  runApp(
+    MaterialApp(
+      home: const CheckConnectionPage(),
+      routes: {'/main': (context) => const MainMenuPage()},
+    ),
+  );
 }
 
 class MainMenuPage extends StatelessWidget {

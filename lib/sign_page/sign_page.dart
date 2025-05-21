@@ -150,8 +150,10 @@ class _SignPageState extends State<SignPage> {
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: ElevatedButton(
                       onPressed: () async {
-                        // final verified = await authenticateWithBiometrics(context);
-                        final verified = true;
+                        final verified = await authenticateWithBiometrics(
+                          context,
+                        );
+                        // final verified = true;
                         if (verified) {
                           showDialog(
                             context: context,
@@ -207,6 +209,7 @@ class _SignPageState extends State<SignPage> {
       'lagrange_shard': selectedKeyData!['lagrange_shard'],
       'party': selectedKeyData!['party'],
       'prime': selectedKeyData!['prime'],
+      'pk': selectedKeyData!['pk'],
     };
     return jsonEncode(jsonMap);
   }

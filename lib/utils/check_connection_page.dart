@@ -19,7 +19,7 @@ class _CheckConnectionPageState extends State<CheckConnectionPage> {
     _checkAll();
   }
 
-  Future<void>  _checkAll() async {
+  Future<void> _checkAll() async {
     final bluetoothState = await FlutterBluePlus.adapterState.first;
     final connectivityResult = await Connectivity().checkConnectivity();
 
@@ -30,7 +30,7 @@ class _CheckConnectionPageState extends State<CheckConnectionPage> {
   }
 
   Widget _buildStatusRow(String title, bool? isOff) {
-    if (isOff == null) return const SizedBox(); 
+    if (isOff == null) return const SizedBox();
     return ListTile(
       leading: Icon(
         isOff ? Icons.check_circle : Icons.cancel,
@@ -51,15 +51,21 @@ class _CheckConnectionPageState extends State<CheckConnectionPage> {
         padding: const EdgeInsets.all(24),
         child: Column(
           children: [
-            const Text('Please make sure that both Bluetooth and the network are turned off before continuing', style: TextStyle(fontSize: 16)),
+            const Text(
+              'Please make sure that both Bluetooth and the network are turned off before continuing',
+              style: TextStyle(fontSize: 16),
+            ),
             const SizedBox(height: 20),
             _buildStatusRow('Bluetooth off', isBluetoothOff),
             _buildStatusRow('Network off', isNetworkOff),
             const Spacer(),
             ElevatedButton(
-              onPressed: (allOff == true) ? () {
-                Navigator.pushReplacementNamed(context, '/main');
-              } : _checkAll,
+              onPressed:
+                  (allOff == true)
+                      ? () {
+                        Navigator.pushReplacementNamed(context, '/main');
+                      }
+                      : _checkAll,
               child: Text(allOff == true ? 'continue' : 'recheck'),
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(double.infinity, 48),
